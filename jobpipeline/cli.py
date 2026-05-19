@@ -23,6 +23,7 @@ import logging
 import sys
 
 from jobpipeline import config
+from jobpipeline.filters import is_remote_listing
 from jobpipeline.models import ApplicationStatus
 from jobpipeline.pipeline import run_discovery
 from jobpipeline.tracker import Tracker
@@ -37,14 +38,19 @@ def _setup_logging(verbose: bool) -> None:
 
 def cmd_discover(args, tracker: Tracker) -> None:
     summary = run_discovery(tracker, tailor=not args.no_tailor)
-    print(f"Discovered: {summary['discovered']}  "
-          f"New: {summary['new']}  Tailored: {summary['tailored']}")
+    msg = (f"Discovered: {summary['discovered']}  "
+           f"New: {summary['new']}  Tailored: {summary['tailored']}")
+    if summary.get("non_remote_skipped"):
+        msg += f"  (non-remote skipped: {summary['non_remote_skipped']})"
+    print(msg)
 
 
 def cmd_list(args, tracker: Tracker) -> None:
     status = ApplicationStatus(args.status) if args.status else None
     records = tracker.query(status=status, min_score=args.min_score,
                             limit=args.limit)
+    if config.REMOTE_ONLY and not getattr(args, "all_locations", False):
+        records = [r for r in records if is_remote_listing(r.listing)]
     if not records:
         print("No matching jobs in the queue.")
         return
@@ -139,6 +145,11 @@ def build_parser() -> argparse.ArgumentParser:
     p_list.add_argument("--status", choices=[s.value for s in ApplicationStatus])
     p_list.add_argument("--min-score", type=float, default=None)
     p_list.add_argument("--limit", type=int, default=50)
+    p_list.add_argument(
+        "--all-locations",
+        action="store_true",
+        help="include non-remote jobs (overrides REMOTE_ONLY in config)",
+    )
     p_list.set_defaults(func=cmd_list)
 
     p_show = sub.add_parser("show", help="show full detail for one job")
