@@ -8,6 +8,10 @@ swap to a file loader later if you want non-developers editing it.
 
 from __future__ import annotations
 
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 
 # ---------------------------------------------------------------------------
 # ROLE CLUSTER
@@ -123,6 +127,20 @@ LEVER_COMPANIES: list[str] = [
     # e.g. "netflix", "spotify" — add lever.co board slugs here
 ]
 
+# Ashby: slug from jobs.ashbyhq.com/<slug> or api.ashbyhq.com/.../job-board/<slug>
+ASHBY_COMPANIES: list[str] = [
+    "notion",
+    "linear",
+    # add Ashby board slugs here
+]
+
+# Paste LinkedIn / other jobs into this CSV (see data/import_jobs.csv.example)
+CSV_IMPORT_PATH = os.path.join(BASE_DIR, "data", "import_jobs.csv")
+CSV_IMPORT_ENABLED = True
+
+# Remotive public aggregator (all listings are remote)
+REMOTIVE_ENABLED = True
+
 
 # ---------------------------------------------------------------------------
 # LOCATION
@@ -145,9 +163,6 @@ SCORING = {
 # ---------------------------------------------------------------------------
 # PATHS
 # ---------------------------------------------------------------------------
-import os
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB_PATH = os.path.join(BASE_DIR, "data", "pipeline.db")
 BASE_RESUME_PATH = os.path.join(BASE_DIR, "resume", "base_resume.json")
 OUTPUT_DIR = os.path.join(BASE_DIR, "data", "applications")

@@ -27,7 +27,7 @@ listings    cluster    bullets,   persistence,
 | Module | File | Responsibility |
 |---|---|---|
 | Models | `jobpipeline/models.py` | Shared dataclasses: `JobListing`, `ScoreResult`, `TailoredApplication`, `PipelineRecord` |
-| Sources | `jobpipeline/sources/` | Greenhouse + Lever public JSON APIs (both implemented) |
+| Sources | `jobpipeline/sources/` | Greenhouse, Lever, Ashby, Remotive, CSV import |
 | Scorer | `jobpipeline/scorer.py` | Role-cluster title matching + owner-profile JD overlap → 0-100 fit score |
 | Tailor | `jobpipeline/tailor.py` | Reorders/reweights resume bullets, aligns keywords, drafts a cover letter, **flags unsupported claims** |
 | Tracker | `jobpipeline/tracker.py` | SQLite store; dedup so jobs aren't re-surfaced; status tracking |
@@ -41,8 +41,15 @@ pip install -r requirements.txt
 ```
 
 Then edit `jobpipeline/config.py`:
-- Add company board slugs to `GREENHOUSE_COMPANIES` / `LEVER_COMPANIES`
-- Tune `ROLE_CLUSTER`, `OWNER_PROFILE`, and `SCORING` weights as needed
+- Add company board slugs to `GREENHOUSE_COMPANIES`, `LEVER_COMPANIES`, `ASHBY_COMPANIES`
+- Enable `REMOTIVE_ENABLED` for the Remotive aggregator, or paste jobs into `data/import_jobs.csv`
+- Tune `ROLE_CLUSTER`, `OWNER_PROFILE`, `REMOTE_ONLY`, and `SCORING` weights as needed
+
+Find a board slug from a careers URL:
+
+```bash
+python scripts/detect_board.py --probe https://jobs.ashbyhq.com/notion
+```
 
 ## Usage
 
@@ -91,7 +98,7 @@ detection).
   bullets (`python-docx`) and set `TailoredApplication.resume_path`.
 - **Web dashboard** — build a Flask/Textual UI on the existing `Tracker`
   queries; add the "one-click submit" staging affordance.
-- **More sources** — implement a board aggregator against `JobSource`.
+- **More sources** — Ashby, Remotive, and CSV import are included; add more aggregators against `JobSource`.
 - **Scheduling** — wrap `pipeline.run_discovery` in a GitHub Actions cron.
 
 ## Project layout

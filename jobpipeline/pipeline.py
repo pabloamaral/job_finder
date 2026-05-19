@@ -16,7 +16,13 @@ import logging
 from jobpipeline import config
 from jobpipeline.filters import filter_remote_only
 from jobpipeline.scorer import filter_and_score
-from jobpipeline.sources import GreenhouseSource, LeverSource
+from jobpipeline.sources import (
+    AshbySource,
+    CsvImportSource,
+    GreenhouseSource,
+    LeverSource,
+    RemotiveSource,
+)
 from jobpipeline.sources.base import JobSource
 from jobpipeline.tailor import load_base_resume, tailor_application
 from jobpipeline.tracker import Tracker
@@ -31,6 +37,12 @@ def build_sources() -> list[JobSource]:
         sources.append(GreenhouseSource(config.GREENHOUSE_COMPANIES))
     if config.LEVER_COMPANIES:
         sources.append(LeverSource(config.LEVER_COMPANIES))
+    if config.ASHBY_COMPANIES:
+        sources.append(AshbySource(config.ASHBY_COMPANIES))
+    if config.CSV_IMPORT_ENABLED:
+        sources.append(CsvImportSource(config.CSV_IMPORT_PATH))
+    if config.REMOTIVE_ENABLED:
+        sources.append(RemotiveSource())
     return sources
 
 

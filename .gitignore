@@ -1,4 +1,5 @@
 .venv/
-data/
+data/*
+!data/import_jobs.csv.example
 __pycache__/
 *.pyc
