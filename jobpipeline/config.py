@@ -116,22 +116,55 @@ OWNER_PROFILE: dict = {
 # Greenhouse and Lever expose public JSON per company. The "slug" is the
 # identifier in the board URL, e.g. boards.greenhouse.io/<slug>.
 GREENHOUSE_COMPANIES: list[str] = [
+    # AI / data platforms
     "anthropic",
     "databricks",
-    "snowflake",
+    "scaleai",
+    "amplitude",
+    "fivetran",
+    "hightouch",
+    "launchdarkly",
+    # Cloud / infra / dev tools
+    "datadog",
+    "mongodb",
+    "cloudflare",
+    "okta",
+    "elastic",
+    "gitlab",
+    "twilio",
+    "pagerduty",
+    # SaaS / fintech
     "stripe",
-    # add company board slugs here
+    "figma",
+    "brex",
+    "block",
+    "robinhood",
+    "airbnb",
+    "lyft",
+    "instacart",
+    "asana",
+    "airtable",
+    "gusto",
+    "discord",
+    # snowflake — Greenhouse slug 404; find correct board or use CSV import
 ]
 
 LEVER_COMPANIES: list[str] = [
-    # e.g. "netflix", "spotify" — add lever.co board slugs here
+    "spotify",
+    "palantir",
 ]
 
-# Ashby: slug from jobs.ashbyhq.com/<slug> or api.ashbyhq.com/.../job-board/<slug>
+# Ashby: slug from jobs.ashbyhq.com/<slug>
 ASHBY_COMPANIES: list[str] = [
     "notion",
     "linear",
-    # add Ashby board slugs here
+    "openai",
+    "ramp",
+    "perplexity",
+    "cursor",
+    "supabase",
+    "cohere",
+    "langchain",
 ]
 
 # Paste LinkedIn / other jobs into this CSV (see data/import_jobs.csv.example)
