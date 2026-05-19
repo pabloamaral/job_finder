@@ -155,7 +155,7 @@ REMOTE_ONLY = True
 SCORING = {
     "title_weight": 0.45,    # how much title-cluster fit matters
     "profile_weight": 0.55,  # how much JD/profile overlap matters
-    "min_score_to_tailor": 60.0,  # don't waste tailoring effort below this
+    "min_score_to_tailor": 70.0,  # don't waste tailoring effort below this
     "remote_bonus": 5.0,     # small nudge for remote roles
 }
 
