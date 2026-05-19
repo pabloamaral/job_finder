@@ -14,6 +14,7 @@ from __future__ import annotations
 import logging
 
 from jobpipeline import config
+from jobpipeline.filters import filter_remote_only
 from jobpipeline.scorer import filter_and_score
 from jobpipeline.sources import GreenhouseSource, LeverSource
 from jobpipeline.sources.base import JobSource
@@ -49,6 +50,17 @@ def run_discovery(tracker: Tracker, tailor: bool = True) -> dict:
         all_listings.extend(source.fetch())
     logger.info("Discovered %d listings total", len(all_listings))
 
+    non_remote = 0
+    if config.REMOTE_ONLY:
+        before = len(all_listings)
+        all_listings = filter_remote_only(all_listings)
+        non_remote = before - len(all_listings)
+        logger.info(
+            "REMOTE_ONLY: kept %d remote listings (%d non-remote skipped)",
+            len(all_listings),
+            non_remote,
+        )
+
     # 2. DEDUP --------------------------------------------------------------
     known = tracker.known_job_ids()
     new_listings = [lst for lst in all_listings if lst.job_id not in known]
@@ -73,6 +85,7 @@ def run_discovery(tracker: Tracker, tailor: bool = True) -> dict:
         "discovered": len(all_listings),
         "new": len(new_listings),
         "tailored": tailored_count,
+        "non_remote_skipped": non_remote,
     }
     logger.info("Discovery run complete: %s", summary)
     return summary

@@ -11,6 +11,7 @@ import tempfile
 
 import pytest
 
+from jobpipeline.filters import is_remote_listing
 from jobpipeline.models import JobListing
 from jobpipeline.scorer import (
     normalize_title,
@@ -47,12 +48,23 @@ BASE_RESUME = {
 }
 
 
-def _listing(title="Solutions Architect", desc="We need Python and Snowflake "
-             "skills for cloud data migration and API integration work."):
-    return JobListing(
-        title=title, company="TestCo", location="Remote",
-        description=desc, url="https://example.com/job/1", source="test",
+def _listing(**kwargs):
+    defaults = dict(
+        title="Solutions Architect",
+        company="TestCo",
+        location="Remote",
+        description=(
+            "We need Python and Snowflake skills for cloud data migration "
+            "and API integration work."
+        ),
+        url="https://example.com/job/1",
+        source="test",
     )
+    defaults.update(kwargs)
+    lst = JobListing(**defaults)
+    if "remote" not in kwargs:
+        lst.remote = "remote" in defaults["location"].lower()
+    return lst
 
 
 # --- title normalization + cluster matching --------------------------------
@@ -90,6 +102,14 @@ def test_score_listing_produces_full_result():
     assert 0 <= result.fit_score <= 100
     assert result.matched_keywords  # JD mentions python/snowflake
     assert result.reasons
+
+
+def test_is_remote_listing():
+    assert is_remote_listing(_listing(location="Remote - US"))
+    assert is_remote_listing(_listing(location="United States (Remote)"))
+    assert not is_remote_listing(_listing(location="San Francisco, CA"))
+    assert not is_remote_listing(_listing(location="Hybrid - Remote"))
+    assert not is_remote_listing(_listing(location="Costa Rica"))
 
 
 def test_remote_role_gets_bonus():
