@@ -1,0 +1,98 @@
+{
+  "name": "Pablo Amaral",
+  "contact": {
+    "location": "Bend, Oregon",
+    "phone": "+1 (925) 219 6116",
+    "email": "pabz.amaral@gmail.com",
+    "linkedin": "linkedin.com/in/amaralpablo"
+  },
+  "summary": "Solutions Architect with 8+ years owning the post sale technical relationship for Enterprise customers across implementation, integration, and ongoing advisory. Strong record of translating complex data and analytics environments into business outcomes, partnering with developers and business stakeholders alike. Hands on with SQL, Python, and REST APIs, with deep experience in cloud data warehouses, BI and analytics activation, and custom API and embedded integrations. Energized by working with new technology and helping customers get the most out of the software they already own.",
+  "skills": {
+    "Languages": ["SQL", "Python", "JavaScript", "REST APIs"],
+    "Analytics and BI": ["Embedded analytics", "data visualization", "segmentation", "audience activation", "identity resolution", "measurement and performance analysis"],
+    "Cloud Platforms and Warehouses": ["AWS", "Google Cloud", "Snowflake", "BigQuery", "Redshift", "Databricks"],
+    "Integration and Architecture": ["Custom API integrations", "embedded and OAuth flows", "ETL and ELT", "data migrations", "relational databases"],
+    "Developer Tooling": ["Git and GitHub", "Cursor", "MCP", "CI/CD basics", "REST clients"],
+    "Delivery": ["Solution architecture", "implementation", "technical advisory", "customer enablement", "cross functional leadership"]
+  },
+  "experience": [
+    {
+      "title": "Solutions Architect",
+      "company": "Simon AI",
+      "start": "June 2024",
+      "end": "Present",
+      "blurb": "Own technical strategy and solution design for a portfolio of Enterprise clients, architecting and implementing solutions for complex use cases across the customer lifecycle. Help lead POC design and execution, drive expansion opportunities, and ensure clients realize full platform value. Lead onboarding and data migrations from client cloud data warehouses into Simon AI's Composable CDP.",
+      "bullets": [
+        "Architect end-to-end migrations from Snowflake, BigQuery, Redshift, and Databricks into the Composable CDP, reducing time to value for new Enterprise onboardings.",
+        "Develop advanced SQL for segmentation, data models, and cross channel activation directly inside client cloud data warehouses, including measurement and performance analysis on customer audiences.",
+        "Build and maintain custom Python integrations connecting client data sources and APIs to the platform, expanding integration coverage and reducing manual engineering work for Enterprise customers.",
+        "Refactor existing Python integrations to improve performance and reliability, accelerating data sync times and downstream activation in marketing and analytics tools.",
+        "Serve as the ongoing technical advisor for Enterprise accounts, troubleshooting complex integration and data issues and translating findings for both developer and business audiences.",
+        "Partner with Customer Success, Engineering, and Product to align technical architecture with business goals and surface customer feedback that informs the product roadmap."
+      ]
+    },
+    {
+      "title": "Senior Technical Account Manager",
+      "company": "LiveRamp",
+      "start": "Sept 2023",
+      "end": "June 2024",
+      "blurb": "Owned the technical relationship with LiveRamp's most strategic Enterprise clients as trusted advisor and product expert. Scoped and delivered solutions, troubleshot complex platform challenges, and architected custom integrations to maximize client value and renewal outcomes.",
+      "bullets": [
+        "Architected custom API integrations and embedded data flows for Enterprise and Strategic accounts, expanding platform footprint and supporting renewal outcomes.",
+        "Built and refined SQL queries inside LiveRamp's Data Room so clients could run measurement, performance analysis, and BI style exploration on their own audiences.",
+        "Defined success criteria for client configurations and recommended tailored solutions that aligned platform capabilities with each client's business outcomes.",
+        "Acted as customer advocate and liaison to Product, Engineering, and Data Science to unblock complex technical challenges and influence the roadmap."
+      ]
+    },
+    {
+      "title": "Senior Services Consultant, Implementation",
+      "company": "LiveRamp",
+      "start": "April 2020",
+      "end": "Sept 2023",
+      "blurb": "Served as technical and operational SME for LiveRamp implementations, designing data-driven solutions across the marketing technology stack and translating complex technical concepts for both technical and non-technical stakeholders.",
+      "bullets": [
+        "Completed 140+ Enterprise implementations with a 4.78 / 5 average CSAT across the portfolio.",
+        "Designed and delivered complex, custom platform configurations and API integrations to meet client specific requirements and edge cases.",
+        "Led implementations for beta products and authored the documentation and best practices used by the broader implementation team at GA.",
+        "Mentored team members on implementation best practices, technical troubleshooting, and customer facing solutioning, including live working sessions with technical stakeholders.",
+        "Surfaced trade offs and recommendations early in scoping to maximize customer value within timeline and resource constraints."
+      ]
+    },
+    {
+      "title": "Implementation Project Manager",
+      "company": "Paycom",
+      "start": "Sept 2019",
+      "end": "April 2020",
+      "blurb": "",
+      "bullets": [
+        "Managed end to end SaaS implementations, partnering with internal teams and clients to drive full product adoption.",
+        "Mapped client processes, identified pain points, and recommended workflow improvements that maximized platform efficiency.",
+        "Held internal teams and external partners accountable to project objectives and timelines, ensuring on time, accurate product setup."
+      ]
+    },
+    {
+      "title": "Associate Consultant",
+      "company": "DXC Technology",
+      "start": "July 2017",
+      "end": "March 2019",
+      "blurb": "",
+      "bullets": [
+        "Gathered business requirements, defined KPIs, and delivered actionable reporting and dashboards to senior management for enterprise clients.",
+        "Collaborated with business users, project leaders, and developers to design business and data architectures for current state and future state assessments.",
+        "Conducted root cause analyses on operational issues and recommended actionable solutions that improved process efficiency."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "B.S., Management Information Systems",
+      "institution": "California State University, Chico",
+      "years": "2015 - 2017"
+    },
+    {
+      "degree": "Business Administration",
+      "institution": "Butte College",
+      "years": "2013 - 2015"
+    }
+  ]
+}
